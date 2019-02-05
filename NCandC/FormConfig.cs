@@ -56,8 +56,6 @@ namespace NCandC
             }
         }
 
-
-
         public void bApply_Click(object sender, EventArgs e)
         {
 
