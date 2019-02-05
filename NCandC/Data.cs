@@ -8,6 +8,6 @@ namespace Data
 {
     public class Dizionario
     {
-        public static Dictionary<int, string> matrix = new Dictionary<int, string>();
+        public static string[] matrix = new string[8];
     }
 }
