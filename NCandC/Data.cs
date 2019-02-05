@@ -6,5 +6,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-
+    public class Dizionario
+    {
+        public static Dictionary<int, string> matrix = new Dictionary<int, string>();
+    }
 }

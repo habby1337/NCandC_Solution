@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Data;
 
 namespace NCandC
 {
     public partial class FormConfig : Form
     {
+        
         public FormConfig()
         {
             InitializeComponent();
@@ -56,12 +58,25 @@ namespace NCandC
             }
         }
 
+        public void createDictionaries()
+        {
+            int nplayer = 0;
+            foreach (var listBoxItem in ListPlayer.Items)
+            {
+                Dizionario.matrix.Add(listBoxItem.ToString());
+                nplayer++;
+            }
+            foreach (KeyValuePair<int, string> author in Dizionario.matrix)
+            {
+                Console.WriteLine("Key: {0}, Value: {1}",
+                    author.Key, author.Value);
+            }
 
+        }
 
         public void bApply_Click(object sender, EventArgs e)
         {
-
-
+            createDictionaries();
         }
     }
 }
