@@ -37,5 +37,22 @@ namespace NCandC
                 
         }
 
+        private void bInsert_Click(object sender, EventArgs e)
+        {
+            if (TBWord.Text != "")
+            {
+                DialogResult result = MessageBox.Show("La parola: " + TBWord.Text, " è corretta?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    //TODO 
+
+                    /*
+                     * Cercare se già inserita
+                     * Aggiungere punti 
+                     */
+                }
+
+            }
+        }
     }
 }
