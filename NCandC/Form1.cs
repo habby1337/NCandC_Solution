@@ -35,11 +35,17 @@ namespace NCandC
             word = alphabet[pos].ToString();
 
             alphabet = alphabet.Remove(pos, 1);
-
-
-
             //Console.WriteLine("new arr: " + alphabet);
-                
+        }
+
+        private void setPoints()
+        {
+            /*Segna i punti sulla classe del player*/
+        }
+
+        private void getPoints()
+        {
+            /*scrive i punti sulla classe del player*/
         }
 
         private void bInsert_Click(object sender, EventArgs e)
