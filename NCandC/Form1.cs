@@ -25,13 +25,18 @@ namespace NCandC
         private void guess()
         {
             string alphabet = "ABCDEFGHILMNOPQRSTUVZ";
+            string word;
             Random rnd = new Random();
 
             int pos = rnd.Next(0, 20);
 
             //Console.WriteLine("Pos: " + pos + "\n Letter: " + alphabet[pos]+ "\n  All: " + alphabet);
+            lWord.Text = "Lettera: " + alphabet[pos].ToString();
+            word = alphabet[pos].ToString();
 
             alphabet = alphabet.Remove(pos, 1);
+
+
 
             //Console.WriteLine("new arr: " + alphabet);
                 
@@ -41,7 +46,7 @@ namespace NCandC
         {
             if (TBWord.Text != "")
             {
-                DialogResult result = MessageBox.Show("La parola: " + TBWord.Text, " è corretta?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show(lWord.Text + "\nLa parola: " + TBWord.Text + " è corretta?", "Game %Game%", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //TODO 
@@ -51,6 +56,10 @@ namespace NCandC
                      * Aggiungere punti 
                      */
                 }
+                else
+                {
+                    /*NO POINTS 4 YOU NOOB*/
+                }   
 
             }
         }
