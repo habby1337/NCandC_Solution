@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Data;
 
 namespace NCandC
 {
@@ -20,6 +21,15 @@ namespace NCandC
         private void Home_Load(object sender, EventArgs e)
         {
             guess();
+            Players.giocatori[0] = "Geppetto";
+            Players.giocatori[1] = "Peppino";
+            Players.giocatori[2] = "Peppetto";
+
+            setPlayers();
+
+            setPoints(1, 60); //TODO REMOVVE
+            setPoints(0, 200); //TODO REMOVVE
+            setPoints(2, 450); //TODO REMOVVE
         }
 
         private void guess()
@@ -38,14 +48,55 @@ namespace NCandC
             //Console.WriteLine("new arr: " + alphabet);
         }
 
-        private void setPoints()
+        private void setPoints(int PlayerID, int point)
         {
+            int i = 0;
+            string pl = Players.giocatori[PlayerID];
             /*Segna i punti sulla classe del player*/
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+
+                if (row.Cells[0].Value.ToString().Contains(pl))
+                {
+                    dataGridView1.Rows.RemoveAt(i);
+                    this.dataGridView1.Rows.Add(Players.giocatori[PlayerID], point);
+                    
+
+
+
+                    break;
+                }
+                i++;
+                
+                //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
+            }
+
+            //this.dataGridView1.Rows.Add(Players.giocatori[PlayerID], point);
+
         }
 
         private void getPoints()
         {
             /*scrive i punti sulla classe del player*/
+        }
+
+        private void setPlayers()
+        {
+            foreach (var item in Players.giocatori)
+            {
+                if (item != null)
+                {
+                    this.dataGridView1.Rows.Add(item, "0");
+                }
+                else
+                {
+                    break;
+                }
+
+                
+            }
+
+            
         }
 
         private void bInsert_Click(object sender, EventArgs e)
@@ -68,6 +119,11 @@ namespace NCandC
                 }   
 
             }
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

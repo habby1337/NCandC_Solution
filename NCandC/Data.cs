@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class Dizionario
+    public class Players
     {
-        public static string[] matrix = new string[8];
+        public static string[] giocatori = new string[8];
     }
 }
