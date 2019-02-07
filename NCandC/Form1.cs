@@ -21,15 +21,15 @@ namespace NCandC
         private void Home_Load(object sender, EventArgs e)
         {
             guess();
-            Players.giocatori[0] = "Geppetto";
+           /* Players.giocatori[0] = "Geppetto";
             Players.giocatori[1] = "Peppino";
-            Players.giocatori[2] = "Peppetto";
+            Players.giocatori[2] = "Peppetto";*/
 
             setPlayers();
-
+/*
             setPoints(1, 60); //TODO REMOVVE
             setPoints(0, 200); //TODO REMOVVE
-            setPoints(2, 450); //TODO REMOVVE
+            setPoints(2, 450); //TODO REMOVVE*/
         }
 
         private void guess()
@@ -88,15 +88,7 @@ namespace NCandC
                 {
                     this.dataGridView1.Rows.Add(item, "0");
                 }
-                else
-                {
-                    break;
-                }
-
-                
             }
-
-            
         }
 
         private void bInsert_Click(object sender, EventArgs e)
