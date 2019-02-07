@@ -40,6 +40,8 @@
             this.bRemove = new System.Windows.Forms.Button();
             this.bInsert = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.lgamestatus = new System.Windows.Forms.Label();
+            this.bReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +124,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.panel2.Controls.Add(this.bReset);
+            this.panel2.Controls.Add(this.lgamestatus);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.lNumber);
             this.panel2.Controls.Add(this.label3);
@@ -196,6 +200,31 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "(Consiglio: Premere \"Invio\" per inserire il giocatore o \"Canc\" per eliminarlo)";
             // 
+            // lgamestatus
+            // 
+            this.lgamestatus.AutoSize = true;
+            this.lgamestatus.Font = new System.Drawing.Font("Roboto", 12F);
+            this.lgamestatus.ForeColor = System.Drawing.Color.White;
+            this.lgamestatus.Location = new System.Drawing.Point(50, 409);
+            this.lgamestatus.Name = "lgamestatus";
+            this.lgamestatus.Size = new System.Drawing.Size(218, 21);
+            this.lgamestatus.TabIndex = 11;
+            this.lgamestatus.Text = "Stato della partita: %status%";
+            // 
+            // bReset
+            // 
+            this.bReset.FlatAppearance.BorderColor = System.Drawing.Color.Goldenrod;
+            this.bReset.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.bReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bReset.ForeColor = System.Drawing.Color.White;
+            this.bReset.Location = new System.Drawing.Point(167, 498);
+            this.bReset.Name = "bReset";
+            this.bReset.Size = new System.Drawing.Size(126, 39);
+            this.bReset.TabIndex = 12;
+            this.bReset.Text = "Crea nuova partita";
+            this.bReset.UseVisualStyleBackColor = true;
+            this.bReset.Click += new System.EventHandler(this.bReset_Click);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -207,7 +236,7 @@
             this.Font = new System.Drawing.Font("Roboto", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FormConfig";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NCeC :: Config";
             this.Load += new System.EventHandler(this.FormConfig_Load);
             this.panel1.ResumeLayout(false);
@@ -232,5 +261,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lNumber;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lgamestatus;
+        private System.Windows.Forms.Button bReset;
     }
 }

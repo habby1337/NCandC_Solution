@@ -17,6 +17,7 @@ namespace NCandC
         private void FormConfig_Load(object sender, EventArgs e)
         {
             lNumber.Text = Convert.ToString(ListPlayer.Items.Count);
+            lgamestatus.Text = "Stato della partita: Configurazione...";
         }
 
         private void mbox(string testo)
@@ -54,7 +55,6 @@ namespace NCandC
             }
         }
 
-
         private void bInsert_Click(object sender, EventArgs e)
         {
             if (UNPlayer.Text != "")
@@ -79,7 +79,7 @@ namespace NCandC
 
         private void bRemove_Click(object sender, EventArgs e)
         {
-            int i;
+            int i = 0;
             try
             {
                 i = ListPlayer.Items.Count;
@@ -93,6 +93,16 @@ namespace NCandC
             UNPlayer.Clear();
             UNPlayer.Focus();
         }
+
+        public void gameStatus(bool status)
+        {
+            bApply.Enabled = status;
+            bInsert.Enabled = status;
+            bRemove.Enabled = status;
+            UNPlayer.Enabled = status;
+            ListPlayer.Enabled = status;
+        }
+
 
         public void setGameConf()
         {
@@ -111,10 +121,17 @@ namespace NCandC
              {
                  Console.WriteLine("Player: " + item + ", ");
              }*/
-            Form game = new Home();
+
+
+            gameStatus(false);
+            lgamestatus.Text = "Stato della partita: Iniziata...";
+           
+
+            Home game = new Home();
 
             game.Show();
-            this.Hide();
+            this.WindowState = FormWindowState.Minimized;
+            //this.Hide();
 
         }
 
@@ -128,10 +145,14 @@ namespace NCandC
             {
                 mbox("Giocatori insufficenti per iniziare una partita.");
             }
-
-            
         }
 
-        
+        private void bReset_Click(object sender, EventArgs e)
+        {
+            ListPlayer.Items.Clear();
+            lgamestatus.Text = "Stato della partita: Configurazione...";
+            lNumber.Text = Convert.ToString(ListPlayer.Items.Count);
+            gameStatus(true);
+        }
     }
 }

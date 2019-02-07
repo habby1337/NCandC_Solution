@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data;
+using System;
 using System.Windows.Forms;
-using Data;
 
 namespace NCandC
 {
@@ -18,21 +11,34 @@ namespace NCandC
             InitializeComponent();
         }
 
+        int curr_player = 0;
+        int NumPlayer = Players.giocatori.Length - 1;
         private void Home_Load(object sender, EventArgs e)
         {
-            guess();
-           /* Players.giocatori[0] = "Geppetto";
-            Players.giocatori[1] = "Peppino";
-            Players.giocatori[2] = "Peppetto";*/
-
+            guessWord();
             setPlayers();
-/*
-            setPoints(1, 60); //TODO REMOVVE
-            setPoints(0, 200); //TODO REMOVVE
-            setPoints(2, 450); //TODO REMOVVE*/
+            getPlayerTurn(NumPlayer);
         }
 
-        private void guess()
+        private void TBWord_TextChanged(object sender, EventArgs e)
+        {
+            if (TBWord.Text.Length <= 0) return;
+
+            string s = TBWord.Text.Substring(0, 1);
+
+            if (s != s.ToUpper())
+            {
+                int curSelStart = TBWord.SelectionStart;
+                int curSelLength = TBWord.SelectionLength;
+                TBWord.SelectionStart = 0;
+                TBWord.SelectionLength = 1;
+                TBWord.SelectedText = s.ToUpper();
+                TBWord.SelectionStart = curSelStart;
+                TBWord.SelectionLength = curSelLength;
+            }
+        }
+
+        private void guessWord()
         {
             string alphabet = "ABCDEFGHILMNOPQRSTUVZ";
             string word;
@@ -51,50 +57,56 @@ namespace NCandC
         private void setPoints(int PlayerID, int point)
         {
             int i = 0;
-            string pl = Players.giocatori[PlayerID];
+            string pl = Players.giocatori[(PlayerID - 1)];
             /*Segna i punti sulla classe del player*/
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-
                 if (row.Cells[0].Value.ToString().Contains(pl))
                 {
                     dataGridView1.Rows.RemoveAt(i);
-                    this.dataGridView1.Rows.Add(Players.giocatori[PlayerID], point);
-                    
-
-
+                    point = point + Convert.ToInt16(row.Cells[1].Value.ToString());
+                    dataGridView1.Rows.Add(Players.giocatori[(PlayerID - 1)], point);
 
                     break;
                 }
                 i++;
-                
-                //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
             }
-
-            //this.dataGridView1.Rows.Add(Players.giocatori[PlayerID], point);
-
-        }
-
-        private void getPoints()
-        {
-            /*scrive i punti sulla classe del player*/
         }
 
         private void setPlayers()
         {
-            foreach (var item in Players.giocatori)
+            foreach (string item in Players.giocatori)
             {
                 if (item != null)
                 {
-                    this.dataGridView1.Rows.Add(item, "0");
+                    dataGridView1.Rows.Add(item, "0");
                 }
             }
         }
 
+        private void getPlayerTurn(int maxPlayer)
+        {
+            if (curr_player <= maxPlayer)
+            {
+                lplayername.Text = Players.giocatori[curr_player];
+                
+            }
+            else
+            {
+                curr_player = 0;
+                lplayername.Text = Players.giocatori[curr_player];
+            }
+            curr_player++;
+
+        }
+
         private void bInsert_Click(object sender, EventArgs e)
         {
+            
+
             if (TBWord.Text != "")
             {
+                
                 DialogResult result = MessageBox.Show(lWord.Text + "\nLa parola: " + TBWord.Text + " è corretta?", "Game %Game%", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
@@ -104,18 +116,44 @@ namespace NCandC
                      * Cercare se già inserita
                      * Aggiungere punti 
                      */
+                    setPoints(curr_player, 20);
+
                 }
                 else
                 {
+                    setPoints(curr_player, 1);
                     /*NO POINTS 4 YOU NOOB*/
-                }   
-
+                }
+                TBWord.Clear();
+                getPlayerTurn(NumPlayer);
             }
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Home_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show("Sei sicuro di voler uscire?",
+                               "NCandC",
+                                MessageBoxButtons.OKCancel,
+                                MessageBoxIcon.Information) == DialogResult.OK)
+                    Environment.Exit(1);
+                else
+                    e.Cancel = true; // to don't close form is user change his mind
+            }
+
+        }
+
+        private void bReset_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.WindowState = FormWindowState.Normal;
+            this.Close();
         }
     }
 }
