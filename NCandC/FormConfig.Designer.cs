@@ -31,14 +31,15 @@
             this.UNPlayer = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.bApply = new System.Windows.Forms.Button();
-            this.bInsert = new System.Windows.Forms.Button();
-            this.bRemove = new System.Windows.Forms.Button();
             this.ListPlayer = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.bApply = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lNumber = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.bRemove = new System.Windows.Forms.Button();
+            this.bInsert = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +56,8 @@
             this.UNPlayer.Size = new System.Drawing.Size(333, 23);
             this.UNPlayer.TabIndex = 0;
             this.UNPlayer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.UNPlayer.TextChanged += new System.EventHandler(this.UNPlayer_TextChanged);
+            this.UNPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UNPlayer_KeyDown);
             // 
             // label1
             // 
@@ -79,31 +82,17 @@
             this.panel1.Size = new System.Drawing.Size(350, 554);
             this.panel1.TabIndex = 2;
             // 
-            // panel2
+            // ListPlayer
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.panel2.Controls.Add(this.lNumber);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.bRemove);
-            this.panel2.Controls.Add(this.bInsert);
-            this.panel2.Controls.Add(this.UNPlayer);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(566, 554);
-            this.panel2.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto", 12F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(57, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 21);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Lista Giocatori";
+            this.ListPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.ListPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ListPlayer.ForeColor = System.Drawing.Color.White;
+            this.ListPlayer.FormattingEnabled = true;
+            this.ListPlayer.ItemHeight = 16;
+            this.ListPlayer.Location = new System.Drawing.Point(61, 41);
+            this.ListPlayer.Name = "ListPlayer";
+            this.ListPlayer.Size = new System.Drawing.Size(228, 418);
+            this.ListPlayer.TabIndex = 99;
             // 
             // bApply
             // 
@@ -119,45 +108,43 @@
             this.bApply.UseVisualStyleBackColor = true;
             this.bApply.Click += new System.EventHandler(this.bApply_Click);
             // 
-            // bInsert
+            // label2
             // 
-            this.bInsert.FlatAppearance.BorderColor = System.Drawing.Color.Goldenrod;
-            this.bInsert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
-            this.bInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bInsert.ForeColor = System.Drawing.Color.White;
-            this.bInsert.Location = new System.Drawing.Point(73, 167);
-            this.bInsert.Name = "bInsert";
-            this.bInsert.Size = new System.Drawing.Size(126, 39);
-            this.bInsert.TabIndex = 4;
-            this.bInsert.Text = "Inserisci";
-            this.bInsert.UseVisualStyleBackColor = true;
-            this.bInsert.Click += new System.EventHandler(this.bInsert_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Roboto", 12F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(57, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 21);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Lista Giocatori";
             // 
-            // bRemove
+            // panel2
             // 
-            this.bRemove.FlatAppearance.BorderColor = System.Drawing.Color.Goldenrod;
-            this.bRemove.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
-            this.bRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bRemove.ForeColor = System.Drawing.Color.White;
-            this.bRemove.Location = new System.Drawing.Point(280, 167);
-            this.bRemove.Name = "bRemove";
-            this.bRemove.Size = new System.Drawing.Size(126, 39);
-            this.bRemove.TabIndex = 5;
-            this.bRemove.Text = "Rimuovi";
-            this.bRemove.UseVisualStyleBackColor = true;
-            this.bRemove.Click += new System.EventHandler(this.bRemove_Click);
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.lNumber);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.bRemove);
+            this.panel2.Controls.Add(this.bInsert);
+            this.panel2.Controls.Add(this.UNPlayer);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(566, 554);
+            this.panel2.TabIndex = 3;
             // 
-            // ListPlayer
+            // lNumber
             // 
-            this.ListPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.ListPlayer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ListPlayer.ForeColor = System.Drawing.Color.White;
-            this.ListPlayer.FormattingEnabled = true;
-            this.ListPlayer.ItemHeight = 16;
-            this.ListPlayer.Location = new System.Drawing.Point(61, 41);
-            this.ListPlayer.Name = "ListPlayer";
-            this.ListPlayer.Size = new System.Drawing.Size(228, 418);
-            this.ListPlayer.TabIndex = 4;
+            this.lNumber.AutoSize = true;
+            this.lNumber.Font = new System.Drawing.Font("Roboto", 12F);
+            this.lNumber.ForeColor = System.Drawing.Color.White;
+            this.lNumber.Location = new System.Drawing.Point(215, 291);
+            this.lNumber.Name = "lNumber";
+            this.lNumber.Size = new System.Drawing.Size(88, 21);
+            this.lNumber.TabIndex = 8;
+            this.lNumber.Text = "%numero%";
             // 
             // label3
             // 
@@ -170,16 +157,44 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Numero Giocatori:";
             // 
-            // lNumber
+            // bRemove
             // 
-            this.lNumber.AutoSize = true;
-            this.lNumber.Font = new System.Drawing.Font("Roboto", 12F);
-            this.lNumber.ForeColor = System.Drawing.Color.White;
-            this.lNumber.Location = new System.Drawing.Point(215, 291);
-            this.lNumber.Name = "lNumber";
-            this.lNumber.Size = new System.Drawing.Size(88, 21);
-            this.lNumber.TabIndex = 8;
-            this.lNumber.Text = "%numero%";
+            this.bRemove.FlatAppearance.BorderColor = System.Drawing.Color.Goldenrod;
+            this.bRemove.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.bRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bRemove.ForeColor = System.Drawing.Color.White;
+            this.bRemove.Location = new System.Drawing.Point(280, 167);
+            this.bRemove.Name = "bRemove";
+            this.bRemove.Size = new System.Drawing.Size(126, 39);
+            this.bRemove.TabIndex = 2;
+            this.bRemove.Text = "Rimuovi";
+            this.bRemove.UseVisualStyleBackColor = true;
+            this.bRemove.Click += new System.EventHandler(this.bRemove_Click);
+            // 
+            // bInsert
+            // 
+            this.bInsert.FlatAppearance.BorderColor = System.Drawing.Color.Goldenrod;
+            this.bInsert.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.bInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bInsert.ForeColor = System.Drawing.Color.White;
+            this.bInsert.Location = new System.Drawing.Point(73, 167);
+            this.bInsert.Name = "bInsert";
+            this.bInsert.Size = new System.Drawing.Size(126, 39);
+            this.bInsert.TabIndex = 1;
+            this.bInsert.Text = "Inserisci";
+            this.bInsert.UseVisualStyleBackColor = true;
+            this.bInsert.Click += new System.EventHandler(this.bInsert_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Roboto", 7.5F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(69, 119);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(337, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "(Consiglio: Premere \"Invio\" per inserire il giocatore o \"Canc\" per eliminarlo)";
             // 
             // FormConfig
             // 
@@ -216,5 +231,6 @@
         private System.Windows.Forms.ListBox ListPlayer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lNumber;
+        private System.Windows.Forms.Label label4;
     }
 }
