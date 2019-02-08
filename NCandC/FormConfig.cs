@@ -147,7 +147,7 @@ namespace NCandC
             }
         }
 
-        private void bReset_Click(object sender, EventArgs e)
+        public void bReset_Click(object sender, EventArgs e)
         {
             ListPlayer.Items.Clear();
             lgamestatus.Text = "Stato della partita: Configurazione...";

@@ -133,7 +133,6 @@ namespace NCandC
         {
 
         }
-
         private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -143,7 +142,18 @@ namespace NCandC
                                 MessageBoxButtons.OKCancel,
                                 MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    Environment.Exit(1);
+                    // Environment.Exit(1);
+
+                    Form fc = Application.OpenForms["FormConfig"];
+                   
+                    if (fc != null)
+                    {
+                        fc.WindowState = FormWindowState.Normal;
+                        fc.Show();
+                        ((FormConfig)this.Owner).gameStatus(true);
+                        ((FormConfig)this.Owner).bReset_Click(sender, e);
+                        Hide();
+                    }
                 }
                 else
                 {
@@ -170,7 +180,6 @@ namespace NCandC
 
             Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
             lplayername.ForeColor = randomColor;
-            bInsert.ForeColor = randomColor;
             bInsert.FlatAppearance.BorderColor = randomColor;
         }
     }
