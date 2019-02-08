@@ -1,5 +1,6 @@
 ﻿using Data;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NCandC
@@ -9,10 +10,12 @@ namespace NCandC
         public Home()
         {
             InitializeComponent();
+            timer1.Interval = 1000;
+            timer1.Start();
         }
 
-        int curr_player = 0;
-        int NumPlayer = Players.giocatori.Length - 1;
+        private int curr_player = 0;
+        private int NumPlayer = Players.giocatori.Length - 1;
         private void Home_Load(object sender, EventArgs e)
         {
             guessWord();
@@ -89,7 +92,7 @@ namespace NCandC
             if (curr_player <= maxPlayer)
             {
                 lplayername.Text = Players.giocatori[curr_player];
-                
+
             }
             else
             {
@@ -102,12 +105,9 @@ namespace NCandC
 
         private void bInsert_Click(object sender, EventArgs e)
         {
-            
-
             if (TBWord.Text != "")
             {
-                
-                DialogResult result = MessageBox.Show(lWord.Text + "\nLa parola: " + TBWord.Text + " è corretta?", "Game %Game%", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show(lWord.Text + "\nLa parola: " + TBWord.Text + " è corretta?", "Nomi Cose e Città", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //TODO 
@@ -142,18 +142,36 @@ namespace NCandC
                                "NCandC",
                                 MessageBoxButtons.OKCancel,
                                 MessageBoxIcon.Information) == DialogResult.OK)
+                {
                     Environment.Exit(1);
+                }
                 else
+                {
                     e.Cancel = true; // to don't close form is user change his mind
+                }
             }
 
         }
 
-        private void bReset_Click(object sender, EventArgs e)
+        private void TBWord_KeyDown(object sender, KeyEventArgs e)
         {
-            Home home = new Home();
-            home.WindowState = FormWindowState.Normal;
-            this.Close();
+            if (e.KeyCode == Keys.Enter)
+            {
+                bInsert_Click(sender, e);
+            }
+        }
+
+        Random rnd = new Random();
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Text = "NCeC :: Home | " + DateTime.Now.ToString("HH:mm:ss") + " |";
+            
+
+            Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+            lplayername.ForeColor = randomColor;
+            bInsert.ForeColor = randomColor;
+            bInsert.FlatAppearance.BorderColor = randomColor;
         }
     }
 }
